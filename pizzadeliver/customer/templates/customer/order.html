@@ -28,6 +28,8 @@
                 {% endfor %}
                 </div>
 
+                
+
                 <div class="pt-5">
                     {% for pizza in pizzas %}
                     <div class="row mt-4">
@@ -91,7 +93,86 @@
                     {% endfor %}
                 </div>
 
-                <button class="btn btn-dark mt-5">Place Order!</button>
+                <div class="form-group pt-3">
+                    <label for="name">Full Name</label>
+                    <input required  class="form-control"  placeholder="Your Name" name="name" type="text">
+
+                </div>
+
+                <div class="form-group pt-3">
+                    <label for="name">Email Address</label>
+                    <input required  class="form-control"  placeholder="example@mail.com" name="email" type="text">
+
+                </div>
+
+                <div class="form-group pt-3">
+                    <label for="name">Street Address</label>
+                    <input required  class="form-control"  placeholder="123 North ave " name="street" type="text">
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 col-sm-12">
+                        <div class="form-group pt-3">
+                            <label for="name">County</label>
+                            <input required  class="form-control"  placeholder="Nairobi" name="county" type="text">
+        
+                        </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-12">
+        
+                            <div class="form-group pt-3">
+                                <label for="name">Town</label>
+                                <input required  class="form-control"  placeholder="Nairobi" name="town" type="text">
+            
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-12">
+        
+                            <div class="form-group pt-3">
+                                <label for="name">Zip Code</label>
+                                <input required  class="form-control"  placeholder="047" name="zip_code" type="text">
+            
+                            </div>
+                        </div>
+        
+
+                    
+                </div>
+                
+
+                <div class=" pt-3">
+                    
+                    <button type="button" class="btn btn-dark"  data-toggle="modal"  data-target="#submitModal" >Submit Order!</button>
+                </div>    
+
+
+                <!-- Modal -->
+               
+                    <div class="modal fade" id="submitModal" tabindex="-1" role="dialog" aria-labelledby="submitModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="submitModalLabel">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="modal-body">
+                            ...
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+
+
             </form>
         </div>
     </div>

@@ -1,7 +1,9 @@
+import json
 from .models import MenuItem, OrderModel, Category
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.views import View
 from django.core.mail import send_mail
+
 
 # Create your views here.
 class Index(View):
@@ -62,7 +64,7 @@ class Order(View):
             item_ids = []
 
         for item in order_items['items']:
-            price += item ['price']
+            price += item['price'] 
             item_ids.append(item['id'])
 
             order = OrderModel.objects.create(
@@ -96,6 +98,36 @@ class Order(View):
                 'price': price
             }   
 
-            return render(request, 'customer/order_confirmation.html', context)
+            return redirect('order-confirmation',pk=order.pk)
 
 
+class OrderConfirmation(View):
+    def get(self, request,pk, *args, **kwargs):
+        order = OrderModel.objects.get(pk=pk)
+
+        context = {
+            'pk': order.pk,
+            'items': order.items,
+            'price': order.price,
+        }
+
+
+        return render(request, 'customer/order_confirmation.html', context)
+
+
+    def post(self, request,pk, *args, **kwargs):
+
+        data = json.loads(request.body)
+
+        if data['isPaid']:
+            order = OrderModel.objects.get(pk=pk)
+            order.is_paid = True
+            order.save()
+        return  redirect('payment-confirmation')    
+
+
+
+class OrderPayConfirmation(View):
+    def get(self, request, *args, **kwargs):
+
+        return render(request, 'customer/order_pay_confirmation.html')

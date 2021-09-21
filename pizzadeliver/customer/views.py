@@ -67,25 +67,25 @@ class Order(View):
             price += item['price'] 
             item_ids.append(item['id'])
 
-            order = OrderModel.objects.create(
-                price=price,
-                name=name,
-                email=email,
-                street=street,
-                county=county,
-                town=town,
-                zip_code=zip_code
-                )
-            order.items.add(*item_ids)
+        order = OrderModel.objects.create(
+            price=price,
+            name=name,
+            email=email,
+            street=street,
+            county=county,
+            town=town,
+            zip_code=zip_code
+            )
+        order.items.add(*item_ids)
 
             #send confirmation email to user
 
-            body = ('Thankyou for your order! Your order is being processed and will be delivered soon!\n'
+        body = ('Thankyou for your order! Your order is being processed and will be delivered soon!\n'
                 f'Your Total: {price}\n'
                 'Thankyou again for your order!')
 
 
-            send_mail(
+        send_mail(
                 'Thankyou for your order!',
                 body,
                 'example@example.com',
@@ -93,12 +93,12 @@ class Order(View):
                 fail_silently=False
             )
 
-            context = {
+        context = {
                 'items': order_items['items'],
                 'price': price
             }   
 
-            return redirect('order-confirmation',pk=order.pk)
+        return redirect('order-confirmation',pk=order.pk)
 
 
 class OrderConfirmation(View):

@@ -44,7 +44,7 @@ class Order(View):
         street = request.POST.get('street')
         county = request.POST.get('county')
         town = request.POST.get('town')
-        zip_code = request.POST.get('zip_code')
+        county_code = request.POST.get('county_code')
 
         order_items = {
             'items':[]
@@ -74,7 +74,7 @@ class Order(View):
             street=street,
             county=county,
             town=town,
-            zip_code=zip_code
+            county_code=county_code
             )
         order.items.add(*item_ids)
 
